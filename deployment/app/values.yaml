@@ -2,31 +2,17 @@ config:
   name: arch-productdictionary-configmap
   port: 8000
   ddl: validate
-secret:
-  name: arch-productdictionary-secret
 deployment:
   app:
     image: gurok/arch_productdictionary
     port: 8000
     replicas: 2
-  db:
-    image: postgres:latest
-    port: 5432
-    replicas: 1
 service:
   app:
     name: arch-productdictionary-service
     type: ClusterIP
     protocol: TCP
     port: 9000
-  db:
-    name: postgresql-productdictionary-service
-    host: "postgresql-productdictionary-service"
-    type: ClusterIP
-    port: 5432
-    sport: "5432"
-    dbname: arch_productdictionary_db
-    dbschema: public
 ingress:
   name: otus-productdictionary-ingress
   host: arch.homework
